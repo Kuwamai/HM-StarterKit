@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build", // ビルドタスク
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "command": "C:\\Program Files (x86)\\Renesas Electronics\\CS+\\CC\\CubeSuite+.exe",
+            "args": [   // 引数指定
+                "/bb", "DefaultBuild",   // DefaultBuild設定でビルドを実行
+                "${workspaceFolder}\\Sample_software\\step7_maze\\HM_StarterKit.mtpj",    // プロジェクトファイル(.mtpj)をディレクトリから指定する
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Flash", // マイコンへの書き込み
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe"
+                }
+            },
+            "command": "C:\\Program Files (x86)\\Renesas Electronics\\Programming Tools\\Renesas Flash Programmer V3.06\\RFPV3.Console.exe",
+            "args": [   // 引数を指定
+                //"${env:USERPROFILE}\\Documents\\Renesas Flash Programmer\\V3.06\\RX631\\RX631.rpj",    // プロジェクトファイル(.rpj)をディレクトリから指定する
+                "${workspaceFolder}\\RX631\\RX631.rpj",
+            ],
+        },
+    ]
+}
