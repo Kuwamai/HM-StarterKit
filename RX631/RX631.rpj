@@ -6,7 +6,7 @@
   <Device>RX630</Device>
   <OperationTab>
     <Endian>RFLG_ENDIAN_LITTLE</Endian>
-    <ProgramFile>C:\Users\mitum\repos\HM-StarterKit\Sample_software\step4_i2c_io\DefaultBuild\HM_StarterKit.mot</ProgramFile>
+    <ProgramFile>C:\Users\mitum\repos\HM-StarterKit\Sample_software\step7_maze\DefaultBuild\HM_StarterKit.mot</ProgramFile>
   </OperationTab>
   <OperationSettingTab>
     <FillCode>False</FillCode>
