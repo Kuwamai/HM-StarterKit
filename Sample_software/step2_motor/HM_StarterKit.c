@@ -109,8 +109,8 @@ void main(void)
 	MTU.TSTR.BIT.CST0 =1; 
 	
 	PORTC.PODR.BIT.B6 = 1;
-	PORTC.PODR.BIT.B5 = 0;	//R_PH
-	PORTC.PODR.BIT.B4 = 1;	//L_PH
+	PORTC.PODR.BIT.B5 = 1;	//R_PH
+	PORTC.PODR.BIT.B4 = 0;	//L_PH
 	while(1);	
 
 }

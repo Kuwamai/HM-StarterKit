@@ -110,7 +110,7 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					straight(SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);
+					straight(SECTION*3,SEARCH_ACCEL,SEARCH_SPEED,0);
 					log_flag = 0;
 					MOT_POWER_OFF;
 					BEEP();
