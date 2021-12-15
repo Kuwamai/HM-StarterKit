@@ -37,7 +37,7 @@
 //車体中心における並進方向速度に関するフィードバックゲイン
 #define SPEED_KP	(20.0)				//Pゲイン
 #define SPEED_KI	(0.2)				//Iゲイン
-#define SPEED_KD	(0.0)				//Dゲイン　
+#define SPEED_KD	(0.01)				//Dゲイン　
 //車体中心における回転方向速度に関するフィードバックゲイン
 #define OMEGA_KP	(60.0)				//Pゲイン
 #define OMEGA_KI	(0.6)				//Iゲイン
