@@ -123,10 +123,10 @@ void int_cmt0(void)
 	目標速度と目標角角度の積分
 	*****************************************************************************************/
 	I_tar_speed += tar_speed;
-	if(I_tar_speed >30*10000000000){
-		I_tar_speed = 30*10000000000;
-	}else if(I_tar_speed < -1*10000000000){
-		I_tar_speed = 1*10000000000;
+	if(I_tar_speed >30*100000){
+		I_tar_speed = 30*100000;
+	}else if(I_tar_speed < -1*100000){
+		I_tar_speed = 1*100000;
 	}
 	
 	I_tar_ang_vel += tar_ang_vel;
@@ -502,10 +502,10 @@ void int_cmt2(void)
 		
 		//I成分のオーバーフローとアンダーフロー対策
 		I_speed += speed;
-		if(I_speed >30*10000000000){
-			I_speed = 30*10000000000;
-		}else if(I_speed < -1*10000000000){
-			I_speed = -1*10000000000;
+		if(I_speed >30*100000){
+			I_speed = 30*100000;
+		}else if(I_speed < -1*100000){
+			I_speed = -1*100000;
 		}
 
 
