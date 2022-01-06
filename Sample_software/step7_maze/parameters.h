@@ -61,7 +61,7 @@
 #define GOAL_Y	3		//ゴール座標(y)
 
 //決定用センサパラメータ
-#define	SEN_DECISION	2000	//メニュー決定用の光センサ閾値
+#define	SEN_DECISION	3500	//メニュー決定用の光センサ閾値
 
 #define _PARAMETER
 
