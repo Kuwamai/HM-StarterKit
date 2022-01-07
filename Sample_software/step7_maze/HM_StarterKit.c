@@ -86,6 +86,7 @@ void main(void)
 					mypos.dir = north;			//方角を初期化
 					log_flag = 1;
 					log_timer = 0;
+					len_mouse = 0;
 					search_adachi(GOAL_X,GOAL_Y);		//ゴールまで足立法
 					turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
@@ -126,6 +127,7 @@ void main(void)
 					mypos.dir = north;			//方角を初期化
 					log_flag = 1;
 					log_timer = 0;
+					len_mouse = 0;
 					fast_run(GOAL_X,GOAL_Y);		//ゴールまで足立法
 					turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
