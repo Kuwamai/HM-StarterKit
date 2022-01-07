@@ -95,3 +95,5 @@ GLOBAL float			I_ang_vel;				//実角速度のI成分
 
 //UI用グローバル変数
 GLOBAL unsigned char		push_switch;				//スイッチが押されたかどうかの変数
+
+GLOBAL int  WAIT_TIME;			//各動作後の待機時間	[ms]

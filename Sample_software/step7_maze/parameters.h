@@ -54,8 +54,6 @@
 #define	TURN_SPEED	(PI)				//超信地旋回の最高速度	[rad/s]
 #define TURN_MIN_SPEED	(PI/10.0)			//超信地旋回の最低速度	[rad/s]
 
-#define WAIT_TIME	0				//各動作後の待機時間	[ms]
-
 //迷路関連パラメータ
 #define GOAL_X	3		//ゴール座標(x)
 #define GOAL_Y	3		//ゴール座標(y)
