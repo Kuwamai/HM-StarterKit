@@ -23,8 +23,8 @@
 
 #define TH_SEN_R	153				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_L	36				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
-#define TH_SEN_FR	76-10				//壁があるか否かの閾値	
-#define TH_SEN_FL	83-10				//壁があるか否かの閾値
+#define TH_SEN_FR	60				//壁があるか否かの閾値	
+#define TH_SEN_FL	60				//壁があるか否かの閾値
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
