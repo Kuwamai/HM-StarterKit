@@ -40,7 +40,7 @@
 #define SPEED_KD	(0.01)				//Dゲイン　
 //車体中心における回転方向速度に関するフィードバックゲイン
 #define OMEGA_KP	(60.0)				//Pゲイン
-#define OMEGA_KI	(0.6)				//Iゲイン
+#define OMEGA_KI	(0.7)				//Iゲイン
 #define OMEGA_KD	(0.01)				//Dゲイン
 
 //走行パラメータ
