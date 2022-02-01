@@ -10,7 +10,7 @@
 
 extern int get_nextdir(int x, int y, int mask, t_direction *dir);
 
-void fast_run(int x, int y)
+void fast_run(int x, int y, float fast_speed, float fast_accel)
 {
 //引数の座標x,yに向かって最短走行する
 
@@ -76,19 +76,19 @@ void fast_run(int x, int y)
 				break;
 			
 			case right:
-				straight(SECTION*straight_count,FAST_ACCEL,FAST_SPEED,0.0);
+				straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 				turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);				//右に曲がって
 				straight_count = 1;			//走る直線の距離をリセット
 				break;
 			
 			case left:
-				straight(SECTION*straight_count,FAST_ACCEL,FAST_SPEED,0.0);
+				straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 				turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//左に曲がって
 				straight_count = 1;			//走る直線の距離をリセット
 				break;
 			
 			case rear:
-				straight(SECTION*straight_count,FAST_ACCEL,FAST_SPEED,0.0);
+				straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 				turn(180,TURN_ACCEL,TURN_SPEED,LEFT);				//左に曲がって
 				straight_count = 1;			//走る直線の距離をリセット
 				break;
@@ -117,5 +117,5 @@ void fast_run(int x, int y)
 
 		}
 	}
-	straight(SECTION*straight_count,FAST_ACCEL,FAST_SPEED,0.0);
+	straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 }

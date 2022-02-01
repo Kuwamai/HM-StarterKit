@@ -1,7 +1,7 @@
 
 #ifndef _PARAMETER
 
-#include "static_parameters.h"　
+#include "static_parameters.h"
 
 //物理的なパラメータ
 #define TIRE_DIAMETER	(13.4-0.4)				//タイヤの直径	[mm]
@@ -46,12 +46,22 @@
 //走行パラメータ
 #define SEARCH_SPEED	(0.3)				//探索走行の速度	[m/s]
 #define SEARCH_ACCEL	(1.0)				//探索走行の加速度	[m/s^2]
-#define FAST_SPEED	(1.0)				//最短走行の速度	[m/s]
-#define FAST_ACCEL	(2.0)				//最短走行の加速度	[m/s^2]
-#define MIN_SPEED	(0.1)				//最低速度	[m/s]
-
 #define TURN_ACCEL	(PI*2)				//超信地旋回の加速度	[rad/s^2]
 #define	TURN_SPEED	(PI)				//超信地旋回の最高速度	[rad/s]
+
+#define FAST_SPEED_0	(0.3)				//最短走行の速度	[m/s]
+#define FAST_ACCEL_0	(1.0)				//最短走行の加速度	[m/s^2]
+
+#define FAST_SPEED_1	(0.6)				//最短走行の速度	[m/s]
+#define FAST_ACCEL_1	(1.5)				//最短走行の加速度	[m/s^2]
+
+#define FAST_SPEED_2	(1.0)				//最短走行の速度	[m/s]
+#define FAST_ACCEL_2	(2.0)				//最短走行の加速度	[m/s^2]
+
+#define FAST_SPEED_3	(1.5)				//最短走行の速度	[m/s]
+#define FAST_ACCEL_3	(2.0)				//最短走行の加速度	[m/s^2]
+
+#define MIN_SPEED	(0.1)				//最低速度	[m/s]
 #define TURN_MIN_SPEED	(PI/10.0)			//超信地旋回の最低速度	[rad/s]
 
 //迷路関連パラメータ
