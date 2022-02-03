@@ -16,7 +16,7 @@ void set_wall(int x, int y);					//•Çî•ñ‚ğ•Û‘¶
 t_bool is_unknown(int x, int y);				//–¢’Tõ‹æŠÔ‚©”Û‚©‚ğ”»’è
 int get_priority(int x, int y, t_direction dir);		//—Dæ“x‚ğæ“¾(–¢’TõA‘O•ûŒü‚ª—Dæ‚³‚ê‚é)
 int get_nextdir(int x, int y, int mask, t_direction *dir);	//Ÿ‚És‚­‚×‚«•ûŒü‚ğæ“¾‚·‚é
-void search_adachi(int gx, int gy);				//‘«—§–@
+void search_adachi(int gx, int gy, float search_speed, float search_accel);				//‘«—§–@
 
 extern void wait_ms(int wtime);
 
@@ -158,7 +158,6 @@ void make_map(int x, int y, int mask)	//•à”ƒ}ƒbƒv‚ğì¬‚·‚é
 }
 
 
-
 void set_wall(int x, int y)	//•Çî•ñ‚ğ‹L˜^
 {
 //ˆø”‚ÌÀ•Wx,y‚É•Çî•ñ‚ğ‘‚«‚Ş
@@ -247,7 +246,6 @@ t_bool is_unknown(int x, int y)	//w’è‚³‚ê‚½‹æ‰æ‚ª–¢’Tõ‚©”Û‚©‚ğ”»’f‚·‚éŠÖ” –¢’
 		return false;	//’TõÏ
 	}
 }
-
 
 
 int get_priority(int x, int y, t_direction dir)	//‚»‚Ìƒ}ƒX‚Ìî•ñ‚©‚çA—Dæ“x‚ğZo‚·‚é
@@ -379,37 +377,36 @@ int get_nextdir(int x, int y, int mask, t_direction *dir)
 }
 
 
-
-void search_adachi(int gx, int gy)
+void search_adachi(int gx, int gy, float search_speed, float search_accel)
 {
 //ˆø”gx,gy‚ÉŒü‚©‚Á‚Ä‘«—§–@‚Å–À˜H‚ğ’Tõ‚·‚é
 	t_direction glob_nextdir;					//Ÿ‚ÉŒü‚©‚¤•ûŒü‚ğ‹L˜^‚·‚é•Ï”
 
-	accel=SEARCH_ACCEL;
+	accel=search_accel;
 
 	switch(get_nextdir(gx,gy,MASK_SEARCH,&glob_nextdir))		//Ÿ‚És‚­•ûŒü‚ğ–ß‚è’l‚Æ‚·‚éŠÖ”‚ğŒÄ‚Ô
 	{
 		case front:
 			
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//”¼‹æ‰æi‚Ş
+			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//”¼‹æ‰æi‚Ş
 			break;
 		
 		case right:
 			turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);				//‰E‚É‹È‚ª‚Á‚Ä
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//”¼‹æ‰æi‚Ş
+			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//”¼‹æ‰æi‚Ş
 			break;
 		
 		case left:
 			turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//¶‚É‹È‚ª‚Á‚Ä
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//”¼‹æ‰æi‚Ş
+			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//”¼‹æ‰æi‚Ş
 			break;
 		
 		case rear:
 			turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);					//180ƒ^[ƒ“
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//”¼‹æ‰æi‚Ş
+			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//”¼‹æ‰æi‚Ş
 			break;
 	}
-		accel=SEARCH_ACCEL;				//‰Á‘¬“x‚ğİ’è
+		accel=search_accel;				//‰Á‘¬“x‚ğİ’è
 		con_wall.enable = true;					//•Ç§Œä‚ğ—LŒø‚É‚·‚é
 		//MOT_CWCCW_R = MOT_CWCCW_L = MOT_FORWARD;		//‘O•û‚Éi‚Ş
 		len_mouse = 0;					//i‚ñ‚¾‹——£ƒJƒEƒ“ƒg—p•Ï”‚ğƒŠƒZƒbƒg
@@ -448,25 +445,25 @@ void search_adachi(int gx, int gy)
 		{
 			case front:
 
-				straight(SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//”¼‹æ‰æi‚Ş
+				straight(SECTION,search_accel,search_speed,search_speed);		//”¼‹æ‰æi‚Ş
 				break;
 			
 			case right:
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//”¼‹æ‰æi‚Ş
+				straight(HALF_SECTION,search_accel,search_speed,0);		//”¼‹æ‰æi‚Ş
 				turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);				//‰E‚É‹È‚ª‚Á‚Ä
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);
+				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 			
 			case left:
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//”¼‹æ‰æi‚Ş
+				straight(HALF_SECTION,search_accel,search_speed,0);		//”¼‹æ‰æi‚Ş
 				turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//¶‚É‹È‚ª‚Á‚Ä
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);
+				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 			
 			case rear:
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//”¼‹æ‰æi‚Ş
+				straight(HALF_SECTION,search_accel,search_speed,0);		//”¼‹æ‰æi‚Ş
 				turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);					//180ƒ^[ƒ“
-				straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);
+				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 		}
 
@@ -499,7 +496,7 @@ void search_adachi(int gx, int gy)
 		
 	}
 	set_wall(mypos.x,mypos.y);		//•Ç‚ğƒZƒbƒg
-	straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);	
+	straight(HALF_SECTION,search_accel,search_speed,0);	
 
 }
 
