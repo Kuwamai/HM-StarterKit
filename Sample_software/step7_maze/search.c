@@ -382,8 +382,6 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel)
 //引数gx,gyに向かって足立法で迷路を探索する
 	t_direction glob_nextdir;					//次に向かう方向を記録する変数
 
-	accel=search_accel;
-
 	switch(get_nextdir(gx,gy,MASK_SEARCH,&glob_nextdir))		//次に行く方向を戻り値とする関数を呼ぶ
 	{
 		case front:
@@ -406,14 +404,13 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel)
 			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
 			break;
 	}
-		accel=search_accel;				//加速度を設定
-		con_wall.enable = true;					//壁制御を有効にする
-		//MOT_CWCCW_R = MOT_CWCCW_L = MOT_FORWARD;		//前方に進む
-		len_mouse = 0;					//進んだ距離カウント用変数をリセット
-		MTU.TSTR.BIT.CST3 = MTU.TSTR.BIT.CST4 = 1;		//カウントスタート
-	
-		mypos.dir = glob_nextdir;				//方向を更新
 
+	con_wall.enable = true;					//壁制御を有効にする
+	//MOT_CWCCW_R = MOT_CWCCW_L = MOT_FORWARD;		//前方に進む
+	len_mouse = 0;					//進んだ距離カウント用変数をリセット
+	MTU.TSTR.BIT.CST3 = MTU.TSTR.BIT.CST4 = 1;		//カウントスタート
+
+	mypos.dir = glob_nextdir;				//方向を更新
 
 	//向いた方向によって自分の座標を更新する
 	switch(mypos.dir)
