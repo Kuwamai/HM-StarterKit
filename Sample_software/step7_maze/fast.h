@@ -1,1 +1,1 @@
-extern void fast_run(int x, int y);
+extern void fast_run(int x, int y, float fast_speed, float fast_accel);
