@@ -18,17 +18,17 @@
 //センサ関連パラメータ
 #define WAITLOOP_SLED	180				//LEDを光らせてからAD変換を開始するまでの時間稼ぎ用定数
 
-#define REF_SEN_R	1294				//マウスを迷路中央に置いた時のセンサの値
-#define REF_SEN_L	775				//マウスを迷路中央に置いた時のセンサの値
+#define REF_SEN_R	1160				//マウスを迷路中央に置いた時のセンサの値
+#define REF_SEN_L	900				//マウスを迷路中央に置いた時のセンサの値
 
-#define TH_SEN_R	1000				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
-#define TH_SEN_L	500				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
-#define TH_SEN_FR	60				//壁があるか否かの閾値	
-#define TH_SEN_FL	60				//壁があるか否かの閾値
+#define TH_SEN_R	111				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_L	38				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_FR	50				//壁があるか否かの閾値	
+#define TH_SEN_FL	50				//壁があるか否かの閾値
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
-#define CON_WALL_KP	(7.0)				//壁センサによる姿勢制御の比例制御の比例定数
+#define CON_WALL_KP	(3.0)				//壁センサによる姿勢制御の比例制御の比例定数
 
 //フィードバックゲインパラメータ
 //Pゲイン　最初に調整する	実速度が目標速度を中心として軽く振動する程度に調整
