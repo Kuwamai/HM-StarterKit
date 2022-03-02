@@ -79,7 +79,7 @@ void straight(float len, float acc, float max_sp, float end_sp){
 	len_mouse = 0;
 }
 
-void turn(int deg, float ang_accel, float max_ang_velocity, short dir){
+void turn(int deg, float ang_accel, float max_ang_velocity, short dir, int turn_mode){
 	wait_ms(WAIT_TIME);
 	I_tar_ang_vel = 0;
 	I_ang_vel = 0;
@@ -91,7 +91,7 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir){
 	accel = 0;
 	tar_speed = 0;
 	tar_ang_vel = 0;
-	run_mode = SPIN_MODE;
+	run_mode = turn_mode;
 
 	//‰ñ“]•ûŒü’è‹`
 	TURN_DIR = dir;	

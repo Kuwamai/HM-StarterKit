@@ -16,7 +16,7 @@ void set_wall(int x, int y);					//壁情報を保存
 t_bool is_unknown(int x, int y);				//未探索区間か否かを判定
 int get_priority(int x, int y, t_direction dir);		//優先度を取得(未探索、前方向が優先される)
 int get_nextdir(int x, int y, int mask, t_direction *dir);	//次に行くべき方向を取得する
-void search_adachi(int gx, int gy, float search_speed, float search_accel);				//足立法
+void search_adachi(int gx, int gy, float search_speed, float search_accel, int turn_mode);				//足立法
 
 extern void wait_ms(int wtime);
 
@@ -33,7 +33,7 @@ void search_lefthand(void)
 		if(sen_l.is_wall == false)			//左に壁がなければ左に進む
 		{
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進んで
-			turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//左に曲がって
+			turn(90,TURN_ACCEL,TURN_SPEED,LEFT,SPIN_MODE);				//左に曲がって
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
 		}
 		else if( (sen_fl.is_wall == false) && (sen_fr.is_wall == false) )	//前に壁がなければ前に進む
@@ -43,16 +43,15 @@ void search_lefthand(void)
 		else if(sen_r.is_wall == false)			//右に壁がなければ右に進む
 		{
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進む
-			turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);			//右に曲がる
+			turn(90,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);			//右に曲がる
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
 		}
 		else						//それ以外の場合、後ろに進む
 		{
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進む
-			turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);			//後ろに向く
+			turn(180,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);			//後ろに向く
 			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
 		}	
-	
 	}
 }
 
@@ -377,7 +376,7 @@ int get_nextdir(int x, int y, int mask, t_direction *dir)
 }
 
 
-void search_adachi(int gx, int gy, float search_speed, float search_accel)
+void search_adachi(int gx, int gy, float search_speed, float search_accel, int turn_mode)
 {
 //引数gx,gyに向かって足立法で迷路を探索する
 	t_direction glob_nextdir;					//次に向かう方向を記録する変数
@@ -390,17 +389,17 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel)
 			break;
 		
 		case right:
-			turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);				//右に曲がって
+			turn(90,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);				//右に曲がって
 			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
 			break;
 		
 		case left:
-			turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//左に曲がって
+			turn(90,TURN_ACCEL,TURN_SPEED,LEFT,SPIN_MODE);				//左に曲がって
 			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
 			break;
 		
 		case rear:
-			turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);					//180ターン
+			turn(180,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);					//180ターン
 			straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
 			break;
 	}
@@ -447,19 +446,19 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel)
 			
 			case right:
 				straight(HALF_SECTION,search_accel,search_speed,0);		//半区画進む
-				turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);				//右に曲がって
+				turn(90,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);				//右に曲がって
 				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 			
 			case left:
 				straight(HALF_SECTION,search_accel,search_speed,0);		//半区画進む
-				turn(90,TURN_ACCEL,TURN_SPEED,LEFT);				//左に曲がって
+				turn(90,TURN_ACCEL,TURN_SPEED,LEFT,SPIN_MODE);				//左に曲がって
 				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 			
 			case rear:
 				straight(HALF_SECTION,search_accel,search_speed,0);		//半区画進む
-				turn(180,TURN_ACCEL,TURN_SPEED,RIGHT);					//180ターン
+				turn(180,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);					//180ターン
 				straight(HALF_SECTION,search_accel,search_speed,search_speed);
 				break;
 		}

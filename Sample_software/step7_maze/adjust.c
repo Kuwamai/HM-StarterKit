@@ -136,7 +136,7 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					WAIT_TIME = 0;
-					turn(90,TURN_ACCEL,TURN_SPEED,RIGHT);
+					turn(90,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);
 					WAIT_TIME = 100;
 					log_flag = 0;
 					MOT_POWER_OFF;
