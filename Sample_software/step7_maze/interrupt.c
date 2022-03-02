@@ -25,10 +25,7 @@ void int_cmt0(void)
 		if(tar_speed > max_speed){
 			tar_speed = max_speed;	//目標速度を設定最高速度に設定
 		}
-				
-	
 	}else if(run_mode == SPIN_MODE){
-		
 		//車体中心速度更新
 		tar_speed += accel/1000;
 		//最高速度制限
@@ -39,7 +36,6 @@ void int_cmt0(void)
 		//角加速度更新
 		tar_ang_vel += ang_acc/1000.0;	//目標角速度を設定加速度で更新
 		tar_degree  += (tar_ang_vel*180.0/PI)/1000.0;
-
 		
 		//左回転の場合
 		if(TURN_DIR == LEFT){
@@ -50,8 +46,8 @@ void int_cmt0(void)
 			if(tar_degree > max_degree){
 				tar_degree = max_degree;
 			}
-		}else if(TURN_DIR == RIGHT){
 		//右回転の場合
+		}else if(TURN_DIR == RIGHT){
 			//最高角速度制限
 			if(tar_ang_vel < max_ang_vel){
 				tar_ang_vel = max_ang_vel;	//目標速度を設定最高速度に設定
@@ -79,7 +75,6 @@ void int_cmt0(void)
 			
 			con_wall.p_error = con_wall.error;	//過去の偏差を保存
 			
-			
 			//左右のセンサが、それぞれ使える状態であるかどうかチェックして、姿勢制御の偏差を計算
 			if( ( sen_r.is_control == true ) && ( sen_l.is_control == true ) )
 			{									//両方とも有効だった場合の偏差を計算
@@ -89,7 +84,6 @@ void int_cmt0(void)
 			{
 				con_wall.error = 2.0 * (sen_r.error - sen_l.error);	//片方しか使用しないので2倍する
 			}
-			
 			
 			//DI制御計算
 			con_wall.diff = con_wall.error - con_wall.p_error;	//偏差の微分値を計算
