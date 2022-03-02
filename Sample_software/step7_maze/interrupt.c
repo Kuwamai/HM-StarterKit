@@ -27,7 +27,7 @@ void int_cmt0(void)
 		}
 				
 	
-	}else if(run_mode == TURN_MODE){
+	}else if(run_mode == SPIN_MODE){
 		
 		//車体中心速度更新
 		tar_speed += accel/1000;
@@ -141,7 +141,7 @@ void int_cmt0(void)
 	*****************************************************************************************/
 	//フィードバック制御
 	V_r = V_l = 0.0;
-	if(run_mode == STRAIGHT_MODE || run_mode == TURN_MODE){
+	if(run_mode == STRAIGHT_MODE || run_mode == SPIN_MODE){
 	//直進時のフィードバック制御
 		//左右モータのフィードバック
 		//速度に対するP制御

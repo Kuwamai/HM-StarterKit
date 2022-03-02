@@ -91,8 +91,7 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir){
 	accel = 0;
 	tar_speed = 0;
 	tar_ang_vel = 0;
-	//走行モードをスラロームモードにする
-	run_mode = TURN_MODE;
+	run_mode = SPIN_MODE;
 
 	//回転方向定義
 	TURN_DIR = dir;	
@@ -145,8 +144,6 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir){
 		ang_acc = 0;
 		tar_ang_vel = 0;
 		tar_degree = max_degree;
-
-
 	}
 	
 	while(ang_vel >= 0.05 || ang_vel <= -0.05 );

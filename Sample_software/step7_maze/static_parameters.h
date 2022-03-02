@@ -43,8 +43,8 @@
 #define VWALL	3				//仮想壁の値(未使用)
 
 #define STRAIGHT_MODE	0			//直進時のモード
-#define TURN_MODE	1			//超信地旋回時のモード
-#define SLA_MODE	2			//スラロームモード
+#define SPIN_MODE	1			//超信地旋回時のモード
+#define SLALOM_MODE	2			//スラロームモード
 #define NON_CON_MODE	3			//非制御モード
 #define TEST_MODE	4			//テストモード(割り込み用モータ制御を切るモード)
 #define F_WALL_MODE	5
