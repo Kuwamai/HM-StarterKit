@@ -79,8 +79,10 @@ void straight(float len, float acc, float max_sp, float end_sp){
 	len_mouse = 0;
 }
 
-void turn(int deg, float ang_accel, float max_ang_velocity, short dir, int turn_mode){
-	wait_ms(WAIT_TIME);
+void turn(int deg, float ang_accel, float max_ang_velocity, float turn_speed, short dir, int turn_mode){
+	if(turn_speed == 0){
+		wait_ms(WAIT_TIME);
+	}
 	I_tar_ang_vel = 0;
 	I_ang_vel = 0;
 	I_tar_speed = 0;
@@ -89,7 +91,7 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir, int turn_
 
 	float	local_degree = 0;
 	accel = 0;
-	tar_speed = 0;
+	tar_speed = turn_speed;
 	tar_ang_vel = 0;
 	run_mode = turn_mode;
 
@@ -106,7 +108,7 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir, int turn_
 		ang_acc = ang_accel;			//角加速度を設定
 		max_ang_vel = max_ang_velocity;
 		max_degree = deg;
-		while( (max_degree - (degree - local_degree))*PI/180.0 > (tar_ang_vel*tar_ang_vel/(2.0 * ang_acc)));
+		while( (float)(max_degree - (degree - local_degree))*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 *  ang_acc)));
 		
 	}else if(dir == RIGHT){
 		ang_acc = -ang_accel;			//角加速度を設定
@@ -152,5 +154,7 @@ void turn(int deg, float ang_accel, float max_ang_velocity, short dir, int turn_
 	ang_acc = 0;
 	//現在距離を0にリセット
 	len_mouse = 0;
-	wait_ms(WAIT_TIME);
+	if(turn_speed == 0){
+		wait_ms(WAIT_TIME);
+	}
 }

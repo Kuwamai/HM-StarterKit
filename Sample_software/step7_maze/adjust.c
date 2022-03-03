@@ -136,7 +136,9 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					WAIT_TIME = 0;
-					turn(90,TURN_ACCEL,TURN_SPEED,RIGHT,SPIN_MODE);
+					straight(SECTION*1+SLALOM_OFFSET,SEARCH_ACCEL,SEARCH_SPEED,SLALOM_VEL);
+					turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,RIGHT,SPIN_MODE);
+					straight(SECTION*1+SLALOM_OFFSET,SEARCH_ACCEL,SLALOM_VEL,0);
 					WAIT_TIME = 100;
 					log_flag = 0;
 					MOT_POWER_OFF;
