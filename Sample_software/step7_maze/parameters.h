@@ -21,10 +21,16 @@
 #define REF_SEN_R	1160				//マウスを迷路中央に置いた時のセンサの値
 #define REF_SEN_L	900				//マウスを迷路中央に置いた時のセンサの値
 
+/*
 #define TH_SEN_R	111				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_L	38				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_FR	50				//壁があるか否かの閾値	
 #define TH_SEN_FL	50				//壁があるか否かの閾値
+*/
+#define TH_SEN_R	200				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_L	60				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_FR	80				//壁があるか否かの閾値	
+#define TH_SEN_FL	80				//壁があるか否かの閾値
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
@@ -65,8 +71,12 @@
 #define TURN_MIN_SPEED	(PI/10.0)			//超信地旋回の最低速度	[rad/s]
 
 //迷路関連パラメータ
+/*
 #define GOAL_X	3		//ゴール座標(x)
 #define GOAL_Y	3		//ゴール座標(y)
+*/
+#define GOAL_X	6		//ゴール座標(x)
+#define GOAL_Y	9		//ゴール座標(y)
 
 //決定用センサパラメータ
 #define	SEN_DECISION	3500	//メニュー決定用の光センサ閾値
