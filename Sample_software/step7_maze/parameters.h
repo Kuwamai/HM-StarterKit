@@ -48,10 +48,10 @@
 #define SEARCH_ACCEL	(1.0)				//探索走行の加速度	[m/s^2]
 #define TURN_ACCEL	(PI*2)				//超信地旋回の加速度	[rad/s^2]
 #define	TURN_SPEED	(PI)				//超信地旋回の最高速度	[rad/s]
-#define SLALOM_ACCEL	(568.00048)				//超信地旋回の加速度	[rad/s^2]
+#define SLALOM_ACCEL	(87.086893)				//超信地旋回の加速度	[rad/s^2]
 #define	SLALOM_SPEED	(9.4247779)				//超信地旋回の最高速度	[rad/s]
 #define SLALOM_OFFSET (6)
-#define SLALOM_VEL    (0.3)
+#define SLALOM_VEL    (0.2)
 
 #define FAST_SPEED_0	(0.3)				//最短走行の速度	[m/s]
 #define FAST_ACCEL_0	(1.0)				//最短走行の加速度	[m/s^2]
