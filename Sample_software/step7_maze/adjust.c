@@ -110,7 +110,7 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					straight(SECTION*1,SEARCH_ACCEL,SEARCH_SPEED,0);
+					straight(SECTION*1,SEARCH_ACC,SEARCH_VEL,0);
 					log_flag = 0;
 					MOT_POWER_OFF;
 					BEEP();
@@ -136,9 +136,18 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					WAIT_TIME = 0;
-					straight(SECTION*1+SLALOM_OFFSET,SEARCH_ACCEL,SEARCH_SPEED,SLALOM_VEL);
-					turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,RIGHT,SPIN_MODE);
-					straight(SECTION*1+SLALOM_OFFSET,SEARCH_ACCEL,SLALOM_VEL,0);
+					len_mouse = 0;
+					degree = 0;
+					timer = 0;
+					straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);
+					for(int i = 0; i < 4; i++){
+						straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SLALOM_VEL);
+						LED(0x0F);
+						turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,RIGHT,SPIN_MODE);
+						LED(0x00);
+						straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);
+					}
+					straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,0);
 					WAIT_TIME = 100;
 					log_flag = 0;
 					MOT_POWER_OFF;
@@ -165,7 +174,9 @@ void adjust(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					straight(SECTION*3,SEARCH_ACCEL,SEARCH_SPEED,0);
+					straight(SECTION*1,SEARCH_ACC,SEARCH_VEL,SLALOM_VEL);
+					straight(SECTION*2,SEARCH_ACC,SLALOM_VEL,SLALOM_VEL);
+					straight(SECTION*1,SEARCH_ACC,SEARCH_VEL,0);
 					log_flag = 0;
 					MOT_POWER_OFF;
 					BEEP();
