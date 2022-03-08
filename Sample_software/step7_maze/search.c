@@ -23,34 +23,34 @@ extern void wait_ms(int wtime);
 void search_lefthand(void)
 {
 	
-	max_speed = SEARCH_SPEED;				//探索の速度を指定
-	accel = SEARCH_ACCEL;
+	max_speed = SEARCH_VEL;				//探索の速度を指定
+	accel = SEARCH_ACC;
 	
-	straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);			//まず、半区画進む
+	straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);			//まず、半区画進む
 		
 	while(1)
 	{
 		if(sen_l.is_wall == false)			//左に壁がなければ左に進む
 		{
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進んで
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,0);		//半区画進んで
 			turn(90,TURN_ACCEL,TURN_SPEED,0,LEFT,SPIN_MODE);				//左に曲がって
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);	//半区画進む
 		}
 		else if( (sen_fl.is_wall == false) && (sen_fr.is_wall == false) )	//前に壁がなければ前に進む
 		{
-			straight(SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);		//一区画進む
+			straight(SECTION,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);		//一区画進む
 		}
 		else if(sen_r.is_wall == false)			//右に壁がなければ右に進む
 		{
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進む
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,0);		//半区画進む
 			turn(90,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//右に曲がる
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);	//半区画進む
 		}
 		else						//それ以外の場合、後ろに進む
 		{
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,0);		//半区画進む
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,0);		//半区画進む
 			turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//後ろに向く
-			straight(HALF_SECTION,SEARCH_ACCEL,SEARCH_SPEED,SEARCH_SPEED);	//半区画進む
+			straight(HALF_SECTION,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);	//半区画進む
 		}	
 	}
 }
@@ -446,16 +446,14 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel, float
 			
 			case right:
 				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
-				//turn(90,TURN_ACCEL,TURN_SPEED,turn_vel,RIGHT,SPIN_MODE);				//右に曲がって
 				turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,RIGHT,SPIN_MODE);
-				straight(SLALOM_OFFSET,search_accel,SLALOM_VEL,search_speed);
+				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
 				break;
 			
 			case left:
 				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
-				//turn(90,TURN_ACCEL,TURN_SPEED,turn_vel,LEFT,SPIN_MODE);				//左に曲がって
 				turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,LEFT,SPIN_MODE);
-				straight(SLALOM_OFFSET,search_accel,SLALOM_VEL,search_speed);
+				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
 				break;
 			
 			case rear:
