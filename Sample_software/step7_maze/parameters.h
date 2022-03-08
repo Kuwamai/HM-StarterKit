@@ -4,7 +4,7 @@
 #include "static_parameters.h"
 
 //物理的なパラメータ
-#define TIRE_DIAMETER	(13.4-0.4)				//タイヤの直径	[mm]
+#define TIRE_DIAMETER	(13.4-0.38)				//タイヤの直径	[mm]
 #define TIRE_RADIUS	(TIRE_DIAMETER/2.0)		//タイヤの半径	[mm]
 #define MMPP 		(TIRE_DIAMETER*PI)/(ENC_RES_MAX)	//エンコーダ1パルスあたりに進む距離[mm](TIRE_DIAMETER*PI)/(ENC_MAX)
 #define ENC_RES_MAX	(1024)
@@ -21,14 +21,20 @@
 #define REF_SEN_R	1160				//マウスを迷路中央に置いた時のセンサの値
 #define REF_SEN_L	900				//マウスを迷路中央に置いた時のセンサの値
 
+/*
 #define TH_SEN_R	111				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_L	38				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_FR	50				//壁があるか否かの閾値	
+#define TH_SEN_FL	50				//壁があるか否かの閾値
+*/
+#define TH_SEN_R	200				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
+#define TH_SEN_L	60				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_FR	50				//壁があるか否かの閾値	
 #define TH_SEN_FL	50				//壁があるか否かの閾値
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
-#define CON_WALL_KP	(3.0)				//壁センサによる姿勢制御の比例制御の比例定数
+#define CON_WALL_KP	(2.0)				//壁センサによる姿勢制御の比例制御の比例定数
 
 //フィードバックゲインパラメータ
 //Pゲイン　最初に調整する	実速度が目標速度を中心として軽く振動する程度に調整
@@ -44,13 +50,13 @@
 #define OMEGA_KD	(0.01)				//Dゲイン
 
 //走行パラメータ
-#define SEARCH_SPEED	(0.3)				//探索走行の速度	[m/s]
-#define SEARCH_ACCEL	(1.0)				//探索走行の加速度	[m/s^2]
+#define SEARCH_VEL	(0.3)				//探索走行の速度	[m/s]
+#define SEARCH_ACC	(1.0)				//探索走行の加速度	[m/s^2]
 #define TURN_ACCEL	(PI*2)				//超信地旋回の加速度	[rad/s^2]
-#define	TURN_SPEED	(PI)				//超信地旋回の最高速度	[rad/s]
-#define SLALOM_ACCEL	(87.086893)				//超信地旋回の加速度	[rad/s^2]
-#define	SLALOM_SPEED	(9.4247779)				//超信地旋回の最高速度	[rad/s]
-#define SLALOM_OFFSET (6)
+#define	TURN_SPEED	(PI)			//超信地旋回の最高速度	[rad/s]
+#define SLALOM_ACCEL	(97.9310668)				//超信地旋回の加速度	[rad/s^2]
+#define	SLALOM_SPEED	(6.28318530)				//超信地旋回の最高速度	[rad/s]
+#define SLALOM_OFFSET (5)
 #define SLALOM_VEL    (0.2)
 
 #define FAST_SPEED_0	(0.3)				//最短走行の速度	[m/s]
