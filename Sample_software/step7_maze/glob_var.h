@@ -46,8 +46,7 @@ GLOBAL float			p_speed;				//過去の車体速度	[m/s]
 GLOBAL float			tar_speed;				//目標車体速度		[m/s]
 GLOBAL float			end_speed;				//終端車体速度		[m/s]
 GLOBAL float			V_r;					//右モータの出力電圧	[V]
-GLOBAL float			
-V_l;					//左モータの出力電圧	[V]
+GLOBAL float			V_l;					//左モータの出力電圧	[V]
 
 //エンコーダ角度系のグローバル変数
 GLOBAL unsigned int			angle;					//現在の車軸角度	[deg]
