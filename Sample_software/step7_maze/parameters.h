@@ -34,7 +34,7 @@
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
-#define CON_WALL_KP	(2.0)				//壁センサによる姿勢制御の比例制御の比例定数
+#define CON_WALL_KP	(4.0)				//壁センサによる姿勢制御の比例制御の比例定数
 
 //フィードバックゲインパラメータ
 //Pゲイン　最初に調整する	実速度が目標速度を中心として軽く振動する程度に調整
@@ -56,7 +56,7 @@
 #define	TURN_SPEED	(PI)			//超信地旋回の最高速度	[rad/s]
 #define SLALOM_ACCEL	(97.9310668)				//超信地旋回の加速度	[rad/s^2]
 #define	SLALOM_SPEED	(6.28318530)				//超信地旋回の最高速度	[rad/s]
-#define SLALOM_OFFSET (5)
+#define SLALOM_OFFSET (6)
 #define SLALOM_VEL    (0.2)
 
 #define FAST_SPEED_0	(0.3)				//最短走行の速度	[m/s]
