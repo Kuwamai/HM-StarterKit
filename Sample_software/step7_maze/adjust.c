@@ -139,15 +139,18 @@ void adjust(void)
 					len_mouse = 0;
 					degree = 0;
 					timer = 0;
-					straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);
+					LED(0x00);
+					straight(HALF_SECTION*1,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);
 					for(int i = 0; i < 4; i++){
+						LED(0x01);
 						straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SLALOM_VEL);
-						LED(0x0F);
+						LED(0x03);
 						turn(90,SLALOM_ACCEL,SLALOM_SPEED,SLALOM_VEL,RIGHT,SPIN_MODE);
-						LED(0x00);
+						LED(0x07);
 						straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,SEARCH_VEL);
 					}
-					straight(HALF_SECTION*1+SLALOM_OFFSET,SEARCH_ACC,SEARCH_VEL,0);
+					LED(0x0F);
+					straight(HALF_SECTION*1,SEARCH_ACC,SEARCH_VEL,0);
 					WAIT_TIME = 100;
 					log_flag = 0;
 					MOT_POWER_OFF;
