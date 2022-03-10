@@ -22,7 +22,7 @@
 extern wait_ms(int wtime);
 
 void straight(float len, float acc, float max_sp, float end_sp){
-	LED(0x01);
+	//LED(0x01);
 	I_tar_ang_vel = 0;
 	I_ang_vel = 0;
 	I_tar_speed = 0;
@@ -45,8 +45,8 @@ void straight(float len, float acc, float max_sp, float end_sp){
 	
 	if(end_speed == 0){	//最終的に停止する場合
 		//減速処理を始めるべき位置まで加速、定速区間を続行
-		while( ((len_target -10) - len_mouse) >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
-		LED(0x03);
+		while(len_target - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
+		//LED(0x03);
 		//減速処理開始
 		accel = -acc;					//減速するために加速度を負の値にする	
 		while(len_mouse < len_target -1){		//停止したい距離の少し手前まで継続
@@ -59,13 +59,13 @@ void straight(float len, float acc, float max_sp, float end_sp){
 		accel = 0;
 		tar_speed = 0;
 		//速度が0以下になるまで逆転する
-		LED(0x07);
+		//LED(0x07);
 		while(speed >= 0.0);
 			
 	}else{
 		//減速処理を始めるべき位置まで加速、定速区間を続行
-		while( ((len_target-10) - len_mouse) >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
-		LED(0x03);
+		while(len_target - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
+		//LED(0x03);
 		//減速処理開始
 		accel = -acc;					//減速するために加速度を負の値にする	
 		while(len_mouse < len_target){		//停止したい距離の少し手前まで継続
@@ -80,7 +80,7 @@ void straight(float len, float acc, float max_sp, float end_sp){
 	accel = 0;
 	//現在距離を0にリセット
 	len_mouse = 0;
-	LED(0x00);
+	//LED(0x00);
 }
 
 void turn(int deg, float ang_accel, float max_ang_velocity, float turn_speed, short dir, int turn_mode){
@@ -154,8 +154,10 @@ void turn(int deg, float ang_accel, float max_ang_velocity, float turn_speed, sh
 		tar_degree = max_degree;
 	}
 	
-	LED(0x07 | 0x08);
-	while(ang_vel >= 0.1 || ang_vel <= -0.1 );
+	if(turn_speed == 0){
+		LED(0x07 | 0x08);
+		while(ang_vel >= 0.1 || ang_vel <= -0.1 );
+	}
 	
 	tar_ang_vel = 0;
 	ang_acc = 0;
