@@ -113,29 +113,55 @@ void turn(int deg, float ang_accel, float max_ang_velocity, float turn_speed, sh
 		ang_acc = ang_accel;			//角加速度を設定
 		max_ang_vel = max_ang_velocity;
 		max_degree = deg;
-		while( (float)(max_degree - (degree - local_degree))*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 *  ang_acc)));
+		while( (float)(max_degree - (degree - local_degree) + HAYAME_DEG)*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 *  ang_acc)));
 		
 	}else if(dir == RIGHT){
 		ang_acc = -ang_accel;			//角加速度を設定
 		max_ang_vel = -max_ang_velocity;
 		max_degree = -deg;
-		while(-(float)(max_degree - (degree - local_degree))*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 * -ang_acc)));
+		while(-(float)(max_degree - (degree - local_degree) + HAYAME_DEG)*PI/180.0 > (float)(tar_ang_vel*tar_ang_vel/(float)(2.0 * -ang_acc)));
 	}
 
 	LED(0x03 | 0x08);
 	//BEEP();
 	//角減速区間に入るため、角加速度設定
 	MOT_POWER_ON;
+	if(turn_speed == 0){
+		if(dir == LEFT){
+			ang_acc = -ang_accel;			//角加速度を設定
+			//減速区間走行
+			while((degree - local_degree) < max_degree){
+				if(tar_ang_vel < TURN_MIN_SPEED){
+					ang_acc = 0;
+					tar_ang_vel = TURN_MIN_SPEED;
+				}
+			}
+			
+			ang_acc = 0;
+			tar_ang_vel = 0;
+			tar_degree = max_degree;
+			
+		}else if(dir == RIGHT){
+			ang_acc = +ang_accel;			//角加速度を設定
+			//減速区間走行
+			while((degree - local_degree) > max_degree){
+				if(-tar_ang_vel < TURN_MIN_SPEED){
+					ang_acc = 0;
+					tar_ang_vel = -TURN_MIN_SPEED;
+				}
+			}
+			ang_acc = 0;
+			tar_ang_vel = 0;
+			tar_degree = max_degree;
+		}
+		LED(0x07 | 0x08);
+		while(ang_vel >= 0.1 || ang_vel <= -0.1 );
+	}
+
 	if(dir == LEFT){
 		ang_acc = -ang_accel;			//角加速度を設定
 		//減速区間走行
-		while((degree - local_degree) < max_degree){
-			if(tar_ang_vel < TURN_MIN_SPEED){
-				ang_acc = 0;
-				tar_ang_vel = TURN_MIN_SPEED;
-			}
-		}
-		
+		while((degree - local_degree) < max_degree && tar_ang_vel > 0.1);
 		ang_acc = 0;
 		tar_ang_vel = 0;
 		tar_degree = max_degree;
@@ -143,20 +169,10 @@ void turn(int deg, float ang_accel, float max_ang_velocity, float turn_speed, sh
 	}else if(dir == RIGHT){
 		ang_acc = +ang_accel;			//角加速度を設定
 		//減速区間走行
-		while((degree - local_degree) > max_degree){
-			if(-tar_ang_vel < TURN_MIN_SPEED){
-				ang_acc = 0;
-				tar_ang_vel = -TURN_MIN_SPEED;
-			}
-		}
+		while((degree - local_degree) > max_degree && tar_ang_vel < -0.1);
 		ang_acc = 0;
 		tar_ang_vel = 0;
 		tar_degree = max_degree;
-	}
-	
-	if(turn_speed == 0){
-		LED(0x07 | 0x08);
-		while(ang_vel >= 0.1 || ang_vel <= -0.1 );
 	}
 	
 	tar_ang_vel = 0;
