@@ -445,15 +445,27 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel, float
 				break;
 			
 			case right:
-				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
-				turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,RIGHT,SPIN_MODE);
-				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
+				if(turn_vel == 0){
+					straight(HALF_SECTION,search_accel,search_speed,0);		//半区画進む
+					turn(90,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);				//左に曲がって
+					straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
+				}else{
+					straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
+					turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,RIGHT,SPIN_MODE);
+					straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
+				}
 				break;
 			
 			case left:
-				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
-				turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,LEFT,SPIN_MODE);
-				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
+				if(turn_vel == 0){
+					straight(HALF_SECTION,search_accel,search_speed,0);		//半区画進む
+					turn(90,TURN_ACCEL,TURN_SPEED,0,LEFT,SPIN_MODE);				//左に曲がって
+					straight(HALF_SECTION,search_accel,search_speed,search_speed);		//半区画進む
+				}else{
+					straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//半区画進む
+					turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,LEFT,SPIN_MODE);
+					straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
+				}
 				break;
 			
 			case rear:

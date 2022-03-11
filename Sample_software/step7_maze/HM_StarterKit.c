@@ -88,7 +88,7 @@ void main(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					search_adachi(GOAL_X,GOAL_Y,SEARCH_VEL,SEARCH_ACC,SLALOM_VEL,SPIN_MODE);		//ゴールまで足立法
+					search_adachi(GOAL_X,GOAL_Y,SEARCH_VEL,SEARCH_ACC,0,SPIN_MODE);		//ゴールまで足立法
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
 					map_write();
@@ -97,7 +97,7 @@ void main(void)
 					BEEP();//ゴールしたことをアピール
 					wait_ms(100);
 					BEEP();//ゴールしたことをアピール
-					search_adachi(0,0,SEARCH_VEL,SEARCH_ACC,SLALOM_VEL,SPIN_MODE);			//スタート地点まで足立法で帰ってくる
+					search_adachi(0,0,SEARCH_VEL,SEARCH_ACC,0,SPIN_MODE);			//スタート地点まで足立法で帰ってくる
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
 					MOT_POWER_OFF;
 					map_write();
@@ -320,10 +320,9 @@ void main(void)
 				*****************************************/
 			
 				//センサーの前に手をかざしてスタート
+				//足立法
 				if(sen_fr.value + sen_fl.value + sen_r.value + sen_l.value > SEN_DECISION * 4){
 					BEEP();
-					
-					wait_ms(500);
 				}
 				
 				break;
@@ -340,8 +339,31 @@ void main(void)
 				//センサーの前に手をかざしてスタート
 				if(sen_fr.value + sen_fl.value + sen_r.value + sen_l.value > SEN_DECISION * 4){
 					BEEP();
-
-					wait_ms(500);		
+					degree = 0;
+					timer = 0;
+					log_timer = 0;
+					gyro_get_ref();
+					BEEP();
+					mypos.x = mypos.y = 0;			//座標を初期化
+					mypos.dir = north;			//方角を初期化
+					log_flag = 1;
+					log_timer = 0;
+					len_mouse = 0;
+					search_adachi(GOAL_X,GOAL_Y,SEARCH_VEL,SEARCH_ACC,SLALOM_VEL,SPIN_MODE);		//ゴールまで足立法
+					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
+					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
+					map_write();
+					BEEP();
+					wait_ms(100);
+					BEEP();//ゴールしたことをアピール
+					wait_ms(100);
+					BEEP();//ゴールしたことをアピール
+					search_adachi(0,0,SEARCH_VEL,SEARCH_ACC,SLALOM_VEL,SPIN_MODE);			//スタート地点まで足立法で帰ってくる
+					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
+					MOT_POWER_OFF;
+					map_write();
+					log_flag = 0;
+					BEEP();
 				}
 				
 				break;
