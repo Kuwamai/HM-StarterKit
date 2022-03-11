@@ -129,7 +129,7 @@ void main(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_0,FAST_ACCEL_0,SLALOM_VEL);
+					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_0,FAST_ACCEL_0,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
 					map_write();
@@ -138,7 +138,7 @@ void main(void)
 					BEEP();//ゴールしたことをアピール
 					wait_ms(100);
 					BEEP();//ゴールしたことをアピール
-					fast_run(0,0,FAST_SPEED_0,FAST_ACCEL_0,SLALOM_VEL);
+					fast_run(0,0,FAST_SPEED_0,FAST_ACCEL_0,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
 					MOT_POWER_OFF;
 					map_write();
@@ -170,7 +170,7 @@ void main(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_1,FAST_ACCEL_1,SLALOM_VEL);
+					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_1,FAST_ACCEL_1,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
 					map_write();
@@ -179,7 +179,7 @@ void main(void)
 					BEEP();//ゴールしたことをアピール
 					wait_ms(100);
 					BEEP();//ゴールしたことをアピール
-					fast_run(0,0,FAST_SPEED_1,FAST_ACCEL_1,SLALOM_VEL);
+					fast_run(0,0,FAST_SPEED_1,FAST_ACCEL_1,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
 					MOT_POWER_OFF;
 					map_write();
@@ -211,7 +211,7 @@ void main(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_2,FAST_ACCEL_2,SLALOM_VEL);
+					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_2,FAST_ACCEL_2,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
 					map_write();
@@ -220,7 +220,7 @@ void main(void)
 					BEEP();//ゴールしたことをアピール
 					wait_ms(100);
 					BEEP();//ゴールしたことをアピール
-					fast_run(0,0,FAST_SPEED_2,FAST_ACCEL_2,SLALOM_VEL);
+					fast_run(0,0,FAST_SPEED_2,FAST_ACCEL_2,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
 					MOT_POWER_OFF;
 					map_write();
@@ -242,9 +242,6 @@ void main(void)
 				//センサーの前に手をかざしてスタート
 				if(sen_fr.value + sen_fl.value + sen_r.value + sen_l.value > SEN_DECISION * 4){
 					BEEP();
-	
-					wait_ms(500);		
-					BEEP();
 					map_copy();
 					degree = 0;
 					timer = 0;
@@ -255,7 +252,7 @@ void main(void)
 					log_flag = 1;
 					log_timer = 0;
 					len_mouse = 0;
-					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_3,FAST_ACCEL_3,SLALOM_VEL);
+					fast_run(GOAL_X,GOAL_Y,FAST_SPEED_3,FAST_ACCEL_3,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//ゴールしたら180度回転する
 					mypos.dir = (mypos.dir+6) % 4;		//方角を更新
 					map_write();
@@ -264,7 +261,7 @@ void main(void)
 					BEEP();//ゴールしたことをアピール
 					wait_ms(100);
 					BEEP();//ゴールしたことをアピール
-					fast_run(0,0,FAST_SPEED_3,FAST_ACCEL_3,SLALOM_VEL);
+					fast_run(0,0,FAST_SPEED_3,FAST_ACCEL_3,0);
 					turn(180,TURN_ACCEL,TURN_SPEED,0,RIGHT,SPIN_MODE);			//帰ってきたら180度回転	
 					MOT_POWER_OFF;
 					map_write();
