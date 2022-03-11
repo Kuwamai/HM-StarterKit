@@ -45,7 +45,7 @@ void straight(float len, float acc, float max_sp, float end_sp){
 	
 	if(end_speed == 0){	//最終的に停止する場合
 		//減速処理を始めるべき位置まで加速、定速区間を続行
-		while(len_target - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
+		while(len_target - 5 - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
 		//LED(0x03);
 		//減速処理開始
 		accel = -acc;					//減速するために加速度を負の値にする	
@@ -64,7 +64,7 @@ void straight(float len, float acc, float max_sp, float end_sp){
 			
 	}else{
 		//減速処理を始めるべき位置まで加速、定速区間を続行
-		while(len_target - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
+		while(len_target - 5 - len_mouse >  1000.0*((float)(tar_speed * tar_speed) - (float)(end_speed * end_speed))/(float)(2.0*accel));
 		//LED(0x03);
 		//減速処理開始
 		accel = -acc;					//減速するために加速度を負の値にする	
