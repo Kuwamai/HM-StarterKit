@@ -266,13 +266,20 @@ void int_cmt1(void)		//センサ読み込み用り込み
 			if(sen_r.value > sen_r.th_wall)			//壁の有無を判断
 			{
 				sen_r.is_wall = true;			//右壁あり
+				if(len_kabe_flag_r == 0)
+				{
+					len_kabe_r = len_mouse;
+					len_kabe_flag_r = 1;
+				}
 			}
 			else
 			{
 				sen_r.is_wall = false;			//右壁なし
+				len_kabe_flag_r = 0;
+				len_kabe_r = 0;
 			}
 			
-			if(sen_r.value > sen_r.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
+			if(sen_r.value > sen_r.th_control && len_mouse > IGNORE_WALL_LEN && len_mouse - len_kabe_r > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_r.error = sen_r.value - sen_r.ref;	//制御をかける場合は偏差を計算
 				sen_r.is_control = true;		//右センサを制御に使う
@@ -361,13 +368,20 @@ void int_cmt1(void)		//センサ読み込み用り込み
 			if(sen_l.value > sen_l.th_wall)			//壁の有無を判断
 			{
 				sen_l.is_wall = true;			//左壁あり
+				if(len_kabe_flag_l == 0)
+				{
+					len_kabe_l = len_mouse;
+					len_kabe_flag_l = 1;
+				}
 			}
 			else
 			{
 				sen_l.is_wall = false;			//左壁なし
+				len_kabe_flag_l = 0;
+				len_kabe_l = 0;
 			}
 			
-			if(sen_l.value > sen_l.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
+			if(sen_l.value > sen_l.th_control && len_mouse > IGNORE_WALL_LEN && len_mouse - len_kabe_l > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_l.error = sen_l.value - sen_l.ref;	//制御をかける場合は偏差を計算する
 				sen_l.is_control = true;		//左センサを制御に使う

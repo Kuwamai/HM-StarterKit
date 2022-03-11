@@ -22,6 +22,10 @@
 extern wait_ms(int wtime);
 
 void straight(float len, float acc, float max_sp, float end_sp){
+	len_kabe_r = 0;
+	len_kabe_l = 0;
+	len_kabe_flag_r = 0;
+	len_kabe_flag_l = 0;
 	//LED(0x01);
 	I_tar_ang_vel = 0;
 	I_ang_vel = 0;

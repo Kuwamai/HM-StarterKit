@@ -73,6 +73,10 @@ GLOBAL float			degree;					//現在の車体角度		[degree]
 //車体移動距離系のグローバル変数
 GLOBAL float			len_mouse;				//マウスの移動距離		[mm]
 GLOBAL float			len_target;				//マウスの目標移動距離		[mm]
+GLOBAL float			len_kabe_l;				//マウスの移動距離		[mm]
+GLOBAL int			len_kabe_flag_l;				//マウスの移動距離		[mm]
+GLOBAL float			len_kabe_r;				//マウスの移動距離		[mm]
+GLOBAL int			len_kabe_flag_r;				//マウスの移動距離		[mm]
 
 //ログ用のグローバル変数
 GLOBAL int			log[12][LOG_CNT];			//ログ用の配列
