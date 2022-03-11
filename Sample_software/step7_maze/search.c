@@ -446,13 +446,13 @@ void search_adachi(int gx, int gy, float search_speed, float search_accel, float
 			
 			case right:
 				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//îºãÊâÊêiÇﬁ
-				turn(90,SLALOM_ANG_ACC,SLAMOM_ANG_VEL,SLALOM_VEL,RIGHT,SPIN_MODE);
+				turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,RIGHT,SPIN_MODE);
 				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
 				break;
 			
 			case left:
 				straight(SLALOM_OFFSET,search_accel,search_speed,SLALOM_VEL);		//îºãÊâÊêiÇﬁ
-				turn(90,SLALOM_ANG_ACC,SLAMOM_ANG_VEL,SLALOM_VEL,LEFT,SPIN_MODE);
+				turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,SLALOM_VEL,LEFT,SPIN_MODE);
 				straight(SLALOM_OFFSET,search_accel,search_speed,search_speed);
 				break;
 			
