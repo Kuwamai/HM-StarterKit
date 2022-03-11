@@ -278,7 +278,7 @@ void int_cmt1(void)		//センサ読み込み用り込み
 				sen_r.is_wall = false;			//右壁なし
 			}
 			
-			if(sen_r.value > sen_r.th_control)		//制御をかけるか否かを判断
+			if(sen_r.value > sen_r.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_r.error = sen_r.value - sen_r.ref;	//制御をかける場合は偏差を計算
 				sen_r.is_control = true;		//右センサを制御に使う
@@ -373,7 +373,7 @@ void int_cmt1(void)		//センサ読み込み用り込み
 				sen_l.is_wall = false;			//左壁なし
 			}
 			
-			if(sen_l.value > sen_l.th_control)		//制御をかけるか否かを判断
+			if(sen_l.value > sen_l.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_l.error = sen_l.value - sen_l.ref;	//制御をかける場合は偏差を計算する
 				sen_l.is_control = true;		//左センサを制御に使う

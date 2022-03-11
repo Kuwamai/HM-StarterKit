@@ -37,7 +37,11 @@
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
-#define CON_WALL_KP	(2.5)				//壁センサによる姿勢制御の比例制御の比例定数
+/*
+#define CON_WALL_KP	(0)				//壁センサによる姿勢制御の比例制御の比例定数
+*/
+#define CON_WALL_KP	(3.0)				//壁センサによる姿勢制御の比例制御の比例定数
+#define IGNORE_WALL_LEN (7)
 
 //フィードバックゲインパラメータ
 //Pゲイン　最初に調整する	実速度が目標速度を中心として軽く振動する程度に調整
