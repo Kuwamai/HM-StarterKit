@@ -18,7 +18,6 @@ void fast_run(int x, int y, float fast_speed, float fast_accel, float turn_vel)
 	int straight_count=0;
 	float straight_offset=0;
 	float straight_length=0;
-	float current_speed=0;
 
 	//現在の向きから、次に行くべき方向へ向く
 	switch(get_nextdir(x,y,MASK_SECOND,&glob_nextdir))	//次に行く方向を戻り値とする関数を呼ぶ
@@ -84,6 +83,12 @@ void fast_run(int x, int y, float fast_speed, float fast_accel, float turn_vel)
 					straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 					turn(90,TURN_ACCEL,TURN_SPEED,turn_vel,RIGHT,SPIN_MODE);				//右に曲がって
 					straight_count = 1;			//走る直線の距離をリセット
+				}else{
+					straight_length = straight_count * SECTION - HALF_SECTION + SLALOM_OFFSET + straight_offset;
+					straight(straight_length,fast_accel,fast_speed,turn_vel);
+					turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,turn_vel,RIGHT,SPIN_MODE);				//右に曲がって
+					straight_offset = -HALF_SECTION + SLALOM_OFFSET;
+					straight_count = 1;			//走る直線の距離をリセット
 				}
 				break;
 			
@@ -93,6 +98,12 @@ void fast_run(int x, int y, float fast_speed, float fast_accel, float turn_vel)
 					straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 					turn(90,TURN_ACCEL,TURN_SPEED,turn_vel,LEFT,SPIN_MODE);				//左に曲がって
 					straight_count = 1;			//走る直線の距離をリセット
+				}else{
+					straight_length = straight_count * SECTION - HALF_SECTION + SLALOM_OFFSET + straight_offset;
+					straight(straight_length,fast_accel,fast_speed,turn_vel);
+					turn(90,SLALOM_ANG_ACC,SLALOM_ANG_VEL,turn_vel,LEFT,SPIN_MODE);				//右に曲がって
+					straight_offset = -HALF_SECTION + SLALOM_OFFSET;
+					straight_count = 1;			//走る直線の距離をリセット
 				}
 				break;
 			
@@ -101,6 +112,12 @@ void fast_run(int x, int y, float fast_speed, float fast_accel, float turn_vel)
 				{
 					straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
 					turn(180,TURN_ACCEL,TURN_SPEED,turn_vel,LEFT,SPIN_MODE);				//左に曲がって
+					straight_count = 1;			//走る直線の距離をリセット
+				}else{
+					straight_length = straight_count * SECTION + straight_offset;
+					straight(straight_length,fast_accel,fast_speed,0.0);
+					turn(180,TURN_ACCEL,TURN_SPEED,0,LEFT,SPIN_MODE);				//左に曲がって
+					straight_offset = 0;
 					straight_count = 1;			//走る直線の距離をリセット
 				}
 				break;
@@ -132,5 +149,8 @@ void fast_run(int x, int y, float fast_speed, float fast_accel, float turn_vel)
 	if(turn_vel == 0)
 	{
 		straight(SECTION*straight_count,fast_accel,fast_speed,0.0);
+	}else{
+		straight_length = straight_count * SECTION + straight_offset;
+		straight(straight_length,fast_accel,fast_speed,0.0);
 	}
 }

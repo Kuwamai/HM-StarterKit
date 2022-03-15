@@ -86,12 +86,12 @@
 #define TURN_MIN_SPEED	(PI/10.0)			//超信地旋回の最低速度	[rad/s]
 
 //迷路関連パラメータ
+#define GOAL_X	3		//ゴール座標(x)
+#define GOAL_Y	3		//ゴール座標(y)
 /*
-#define GOAL_X	8		//ゴール座標(x)
-#define GOAL_Y	8		//ゴール座標(y)
-*/
 #define GOAL_X	6		//ゴール座標(x)
 #define GOAL_Y	9		//ゴール座標(y)
+*/
 
 //決定用センサパラメータ
 #define	SEN_DECISION	3500	//メニュー決定用の光センサ閾値
