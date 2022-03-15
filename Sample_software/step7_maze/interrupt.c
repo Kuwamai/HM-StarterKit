@@ -25,10 +25,7 @@ void int_cmt0(void)
 		if(tar_speed > max_speed){
 			tar_speed = max_speed;	//目標速度を設定最高速度に設定
 		}
-				
-	
-	}else if(run_mode == TURN_MODE){
-		
+	}else if(run_mode == SPIN_MODE){
 		//車体中心速度更新
 		tar_speed += accel/1000;
 		//最高速度制限
@@ -39,7 +36,6 @@ void int_cmt0(void)
 		//角加速度更新
 		tar_ang_vel += ang_acc/1000.0;	//目標角速度を設定加速度で更新
 		tar_degree  += (tar_ang_vel*180.0/PI)/1000.0;
-
 		
 		//左回転の場合
 		if(TURN_DIR == LEFT){
@@ -50,8 +46,8 @@ void int_cmt0(void)
 			if(tar_degree > max_degree){
 				tar_degree = max_degree;
 			}
-		}else if(TURN_DIR == RIGHT){
 		//右回転の場合
+		}else if(TURN_DIR == RIGHT){
 			//最高角速度制限
 			if(tar_ang_vel < max_ang_vel){
 				tar_ang_vel = max_ang_vel;	//目標速度を設定最高速度に設定
@@ -79,7 +75,6 @@ void int_cmt0(void)
 			
 			con_wall.p_error = con_wall.error;	//過去の偏差を保存
 			
-			
 			//左右のセンサが、それぞれ使える状態であるかどうかチェックして、姿勢制御の偏差を計算
 			if( ( sen_r.is_control == true ) && ( sen_l.is_control == true ) )
 			{									//両方とも有効だった場合の偏差を計算
@@ -89,7 +84,6 @@ void int_cmt0(void)
 			{
 				con_wall.error = 2.0 * (sen_r.error - sen_l.error);	//片方しか使用しないので2倍する
 			}
-			
 			
 			//DI制御計算
 			con_wall.diff = con_wall.error - con_wall.p_error;	//偏差の微分値を計算
@@ -141,7 +135,7 @@ void int_cmt0(void)
 	*****************************************************************************************/
 	//フィードバック制御
 	V_r = V_l = 0.0;
-	if(run_mode == STRAIGHT_MODE || run_mode == TURN_MODE){
+	if(run_mode == STRAIGHT_MODE || run_mode == SPIN_MODE){
 	//直進時のフィードバック制御
 		//左右モータのフィードバック
 		//速度に対するP制御
@@ -272,13 +266,20 @@ void int_cmt1(void)		//センサ読み込み用り込み
 			if(sen_r.value > sen_r.th_wall)			//壁の有無を判断
 			{
 				sen_r.is_wall = true;			//右壁あり
+				if(len_kabe_flag_r == 0)
+				{
+					len_kabe_r = len_mouse;
+					len_kabe_flag_r = 1;
+				}
 			}
 			else
 			{
 				sen_r.is_wall = false;			//右壁なし
+				len_kabe_flag_r = 0;
+				len_kabe_r = 0;
 			}
 			
-			if(sen_r.value > sen_r.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
+			if(sen_r.value > sen_r.th_control && len_mouse > IGNORE_WALL_LEN && len_mouse - len_kabe_r > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_r.error = sen_r.value - sen_r.ref;	//制御をかける場合は偏差を計算
 				sen_r.is_control = true;		//右センサを制御に使う
@@ -367,13 +368,20 @@ void int_cmt1(void)		//センサ読み込み用り込み
 			if(sen_l.value > sen_l.th_wall)			//壁の有無を判断
 			{
 				sen_l.is_wall = true;			//左壁あり
+				if(len_kabe_flag_l == 0)
+				{
+					len_kabe_l = len_mouse;
+					len_kabe_flag_l = 1;
+				}
 			}
 			else
 			{
 				sen_l.is_wall = false;			//左壁なし
+				len_kabe_flag_l = 0;
+				len_kabe_l = 0;
 			}
 			
-			if(sen_l.value > sen_l.th_control && len_mouse > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
+			if(sen_l.value > sen_l.th_control && len_mouse > IGNORE_WALL_LEN && len_mouse - len_kabe_l > IGNORE_WALL_LEN)		//制御をかけるか否かを判断
 			{
 				sen_l.error = sen_l.value - sen_l.ref;	//制御をかける場合は偏差を計算する
 				sen_l.is_control = true;		//左センサを制御に使う
