@@ -19,21 +19,21 @@
 #define WAITLOOP_SLED	180				//LEDを光らせてからAD変換を開始するまでの時間稼ぎ用定数
 
 //家のパラメータ
-/*
 #define REF_SEN_R	1160				//マウスを迷路中央に置いた時のセンサの値
 #define REF_SEN_L	900				//マウスを迷路中央に置いた時のセンサの値
 #define TH_SEN_R	200				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_L	60				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_FR	50				//壁があるか否かの閾値	
 #define TH_SEN_FL	50				//壁があるか否かの閾値
-*/
 //全国大会会場のパラメータ
+/*
 #define REF_SEN_R	1230				//マウスを迷路中央に置いた時のセンサの値
 #define REF_SEN_L	1033				//マウスを迷路中央に置いた時のセンサの値
 #define TH_SEN_R	230				//壁があるか否かの閾値	車体を区画の左へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_L	70				//壁があるか否かの閾値	車体を区画の右へ寄せた時のセンサ値(壁あり)
 #define TH_SEN_FR	50				//壁があるか否かの閾値80って出てたけど少し少なめにしてみた
 #define TH_SEN_FL	50				//壁があるか否かの閾値
+*/
 
 #define CONTH_SEN_R	TH_SEN_R			//制御をかけるか否かの閾値
 #define CONTH_SEN_L	TH_SEN_L			//制御をかけるか否かの閾値
@@ -67,11 +67,13 @@
 #define SLALOM_OFFSET (6)
 #define SLALOM_VEL    (0.2)
 */
-#define SLALOM_OFFSET (5)
+#define SLALOM_OFFSET_IN (5)
+#define SLALOM_OFFSET_OUT (8)
 #define SLALOM_VEL (0.2)
 #define SLALOM_ANG_VEL (8.79645943)
-#define SLALOM_ANG_ACC (64.87646413)
-#define HAYAME_DEG (2.9)  //予想減速開始姿勢より早めに角速度を減速させる
+#define SLALOM_ANG_ACC (60.0)
+#define HAYAME_DEG (2.4)  //予想減速開始姿勢より早めに角速度を減速させる
+//3->2.5に変えて段差が減るか確認
 
 #define FAST_SPEED_0	(0.3)				//最短走行の速度	[m/s]
 #define FAST_ACCEL_0	(1.0)				//最短走行の加速度	[m/s^2]
